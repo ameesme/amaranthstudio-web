@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amaranth Studios</title>
+    <style>
+      :root {
+        --size: 250px;
+        --text-size: 500px;
+        --marquee-duration: 120s;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #fff;
+      }
+
+      .lockup {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 64px;
+      }
+
+      .square {
+        position: relative;
+        width: var(--size);
+        height: var(--size);
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .square:hover {
+        overflow: visible;
+      }
+
+      .text-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 600px;
+        transform: translate(-50%, -50%) rotate(var(--rotation));
+        transform-origin: center;
+        mix-blend-mode: difference;
+      }
+
+      .marquee {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+      }
+
+      .marquee__item {
+        flex-shrink: 0;
+        min-width: max-content;
+        color: #fff;
+        font-family: "PP Nueu Montreal Bold", "PP Neue Montreal Bold",
+          "PP Nueu Montreal", "PP Neue Montreal", sans-serif;
+        font-size: var(--text-size);
+        font-weight: 700;
+        line-height: 1;
+        text-transform: lowercase;
+        animation-duration: var(--marquee-duration);
+        animation-iteration-count: infinite;
+        animation-name: marquee-content;
+        animation-timing-function: linear;
+        will-change: transform;
+      }
+
+      @keyframes marquee-content {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+
+      .wordmark {
+        margin: 0;
+        color: #000;
+        font-family: "PP Nueu Montreal Bold", "PP Neue Montreal Bold",
+          "PP Nueu Montreal", "PP Neue Montreal", sans-serif;
+        font-size: 140px;
+        font-weight: 700;
+        line-height: 0.62;
+        text-transform: lowercase;
+      }
+
+      .wordmark span {
+        display: block;
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .subtext {
+        margin: 30px 0 0;
+        color: #000;
+        font-family: "PP Nueu Montreal", "PP Neue Montreal", sans-serif;
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        line-height: 1.2;
+        text-transform: lowercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="lockup">
+      <div class="square">
+        <div class="text-box">
+          <div class="marquee">
+            <div class="marquee__item">amaranth studios&nbsp;</div>
+            <div class="marquee__item">amaranth studios&nbsp;</div>
+          </div>
+        </div>
+        <div class="text-box">
+          <div class="marquee">
+            <div class="marquee__item">amaranth studios&nbsp;</div>
+            <div class="marquee__item">amaranth studios&nbsp;</div>
+          </div>
+        </div>
+        <div class="text-box">
+          <div class="marquee">
+            <div class="marquee__item">amaranth studios&nbsp;</div>
+            <div class="marquee__item">amaranth studios&nbsp;</div>
+          </div>
+        </div>
+      </div>
+      <div class="brand-text">
+        <p class="wordmark"><span>amaranth</span><span>studios</span></p>
+        <p class="subtext">
+          creative engineering &middot; experimental workshop &middot; dance
+          school
+        </p>
+      </div>
+    </main>
+    <script>
+      document.querySelectorAll(".text-box").forEach((box) => {
+        box.style.setProperty("--rotation", `${Math.random() * 360}deg`);
+      });
+    </script>
+  </body>
+</html>
