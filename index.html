@@ -29,9 +29,10 @@
 
       .lockup {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 64px;
+        gap: 26px;
       }
 
       .square {
@@ -50,14 +51,9 @@
         overflow: hidden;
         transform: translate(-50%, -50%);
         transform-origin: center;
-        transition: width 800ms cubic-bezier(0.22, 1, 0.36, 1),
-          height 800ms cubic-bezier(0.22, 1, 0.36, 1);
         pointer-events: none;
-      }
-
-      .square:hover .square-clip {
-        width: 160vmax;
-        height: 160vmax;
+        animation: intro-expand 1800ms cubic-bezier(0.22, 1, 0.36, 1) 250ms 1
+          forwards;
       }
 
       .text-box {
@@ -110,6 +106,17 @@
         }
       }
 
+      @keyframes intro-expand {
+        from {
+          width: var(--size);
+          height: var(--size);
+        }
+        to {
+          width: 160vmax;
+          height: 160vmax;
+        }
+      }
+
       @keyframes spin-rotate {
         from {
           transform: translate(-50%, -50%) rotate(var(--rotation));
@@ -124,9 +131,9 @@
         color: var(--foreground);
         font-family: "PP Nueu Montreal Bold", "PP Neue Montreal Bold",
           "PP Nueu Montreal", "PP Neue Montreal", sans-serif;
-        font-size: 140px;
+        font-size: 84px;
         font-weight: 700;
-        line-height: 0.62;
+        line-height: 0.72;
         text-transform: lowercase;
       }
 
@@ -137,18 +144,27 @@
       .brand-text {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        text-align: center;
         mix-blend-mode: difference;
       }
 
       .subtext {
-        margin: 30px 0 0;
+        position: fixed;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        width: calc(100vw - 40px);
+        text-align: center;
         color: var(--foreground);
         font-family: "PP Nueu Montreal", "PP Neue Montreal", sans-serif;
-        font-size: 26px;
+        font-size: 12px;
         font-weight: 500;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.06em;
         line-height: 1.2;
-        text-transform: lowercase;
+        text-transform: uppercase;
+        mix-blend-mode: difference;
       }
     </style>
   </head>
@@ -178,19 +194,18 @@
       </div>
       <div class="brand-text">
         <p class="wordmark"><span>amaranth</span><span>studios</span></p>
-        <p class="subtext">
-          creative engineering &middot; experimental workshop &middot; dance
-          school
-        </p>
       </div>
     </main>
+    <p class="subtext">
+      creative engineering &middot; experimental workshop &middot; dance school
+    </p>
     <script>
       const marqueeSeconds =
         parseFloat(
           getComputedStyle(document.documentElement).getPropertyValue(
             "--marquee-duration"
           )
-        ) || 55;
+        ) || 130;
 
       document.querySelectorAll(".text-box").forEach((box) => {
         box.style.setProperty("--rotation", `${Math.random() * 360}deg`);
