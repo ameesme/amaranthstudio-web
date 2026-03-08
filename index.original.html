@@ -28,8 +28,8 @@
                 --background: #000;
                 --foreground: #fff;
                 --brand: #f2385a;
-                --font-bold:  "PP Neue Montreal Bold", "PP Neue Montreal", sans-serif;
-                --font: "PP Neue Montreal", sans-serif;
+                --font-bold:  "PP Neue Montreal Bold", "PP Neue Montreal Book", sans-serif;
+                --font: "PP Neue Montreal Book", sans-serif;
             }
 
             * {
@@ -194,6 +194,21 @@
                 line-height: 1.2;
                 text-transform: uppercase;
                 mix-blend-mode: difference;
+            }
+
+            /* I'll pay for the fonts I promise */
+            @font-face {
+                font-family: 'PP Neue Montreal Book';
+                font-style: normal;
+                font-weight: normal;
+                src: local('PP Neue Montreal Book'), url('fonts/ppneuemontreal-book.woff') format('woff');
+            }
+
+            @font-face {
+                font-family: 'PP Neue Montreal Bold';
+                font-style: normal;
+                font-weight: normal;
+                src: local('PP Neue Montreal Bold'), url('fonts/ppneuemontreal-bold.woff') format('woff');
             }
         </style>
     </head>
