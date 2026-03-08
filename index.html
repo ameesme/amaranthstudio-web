@@ -2,27 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+        />
         <title>amaranth studio</title>
         <meta
             name="description"
-            content="eindhoven-based creative engineering studio, experimental workshop, and dance school."
+            content="eindhoven-based creative engineering studio, workshop and dance school."
         />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#FFFFFF" />
         <meta name="robots" content="index,follow" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="amaranth studio" />
         <meta
             property="og:description"
-            content="eindhoven-based creative engineering studio, experimental workshop, and dance school."
+            content="eindhoven-based creative engineering studio, workshop and dance school."
         />
         <meta property="og:locale" content="en_nl" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="amaranth studio" />
-        <meta
-            name="twitter:description"
-            content="eindhoven-based creative engineering studio, experimental workshop, and dance school."
-        />
         <style>
             :root {
                 --size: 250px;
@@ -41,11 +38,14 @@
                 margin: 0;
                 background: var(--background);
                 overflow: hidden;
+                width: 100%;
+                height: 100%;
             }
 
             body {
                 margin: 0;
-                min-height: 100vh;
+                min-height: 100%;
+                max-height: 100lvh;
                 display: grid;
                 place-items: center;
                 background: var(--background);
@@ -55,18 +55,8 @@
                 will-change: transform;
             }
 
-            .lockup {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 26px;
-            }
-
             .orb {
                 position: relative;
-                width: var(--size);
-                height: var(--size);
                 flex-shrink: 0;
             }
 
@@ -76,30 +66,34 @@
                 transform-origin: center;
                 pointer-events: none;
                 animation: shell-breathe 12s ease-in-out infinite;
-                border-radius: 300px;
             }
 
-            .orb-clip {
+            .orb-stage {
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 width: var(--size);
                 height: var(--size);
-                overflow: hidden;
                 transform: translate(-50%, -50%);
                 transform-origin: center;
                 pointer-events: none;
-                border-radius: 300px;
+                animation: intro-expand cubic-bezier(1,0,.89,.2) 1500ms 1 forwards;
+            }
+
+            .orb-mask {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                border-radius: 50%;
                 background: white;
                 border: 1px solid white;
-                animation: intro-expand 1050ms ease-in 1000ms 1 forwards;
             }
 
             .text-box {
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                width: 280vmax;
+                /*width: 280vmax;*/
                 transform: translate(-50%, -50%) rotate(var(--rotation));
                 transform-origin: center;
                 mix-blend-mode: difference;
@@ -162,12 +156,10 @@
                 from {
                     width: var(--size);
                     height: var(--size);
-                    border-radius: 300px;
                 }
                 to {
-                    width: 160vmax;
-                    height: 160vmax;
-                    border-radius: 0;
+                    width: 150vw;
+                    height: 150vh;
                 }
             }
 
@@ -183,21 +175,6 @@
                 }
             }
 
-            .wordmark {
-                margin: 0;
-                color: var(--foreground);
-                font-family:
-                    "PP Neue Montreal Bold", "PP Neue Montreal", sans-serif;
-                font-size: 84px;
-                font-weight: 700;
-                line-height: 0.65;
-                text-transform: lowercase;
-            }
-
-            .wordmark span {
-                display: block;
-            }
-
             .brand-text {
                 display: flex;
                 flex-direction: column;
@@ -207,11 +184,12 @@
 
             .subtext {
                 position: fixed;
-                bottom: 28px;
+                bottom: 69px;
                 left: 50%;
                 transform: translateX(-50%);
                 margin: 0;
-                width: calc(100vw - 40px);
+                width: calc(100vw - 120px);
+                max-width: 350px;
                 text-align: center;
                 color: var(--foreground);
                 font-family: "PP Neue Montreal", sans-serif;
@@ -225,49 +203,46 @@
         </style>
     </head>
     <body>
-        <main class="lockup">
             <div class="orb">
                 <div class="sphere-shell">
-                    <div class="orb-clip">
-                        <div class="text-box">
-                            <div class="marquee">
-                                <div class="marquee__item">
-                                    amaranth studio&nbsp;
-                                </div>
-                                <div class="marquee__item">
-                                    amaranth studio&nbsp;
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-box">
-                            <div class="marquee">
-                                <div class="marquee__item">
-                                    amaranth studio&nbsp;
-                                </div>
-                                <div class="marquee__item">
-                                    amaranth studio&nbsp;
+                    <div class="orb-stage">
+                        <div class="orb-mask">
+                            <div class="text-box">
+                                <div class="marquee">
+                                    <div class="marquee__item">
+                                        amaranth studio&nbsp;
+                                    </div>
+                                    <div class="marquee__item">
+                                        amaranth studio&nbsp;
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="text-box">
-                            <div class="marquee">
-                                <div class="marquee__item">
-                                    amaranth studio&nbsp;
+                            <div class="text-box">
+                                <div class="marquee">
+                                    <div class="marquee__item">
+                                        amaranth studio&nbsp;
+                                    </div>
+                                    <div class="marquee__item">
+                                        amaranth studio&nbsp;
+                                    </div>
                                 </div>
-                                <div class="marquee__item">
-                                    amaranth studio&nbsp;
+                            </div>
+                            <div class="text-box">
+                                <div class="marquee">
+                                    <div class="marquee__item">
+                                        amaranth studio&nbsp;
+                                    </div>
+                                    <div class="marquee__item">
+                                        amaranth studio&nbsp;
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="brand-text">
-                <p class="wordmark"><span>amaranth</span><span>studio</span></p>
-            </div>
         </main>
         <p class="subtext">
-            CREATIVE ENGINEERING &middot; WORKSHOP &middot; DANCE SCHOOL
+            eindhoven-based creative engineering studio, workshop and dance school.
         </p>
         <script>
             const marqueeSeconds =
