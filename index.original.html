@@ -28,7 +28,8 @@
                 --background: #000;
                 --foreground: #fff;
                 --brand: #f2385a;
-                --font-bold:  "PP Neue Montreal Bold", "PP Neue Montreal Book", sans-serif;
+                --font-bold:
+                    "PP Neue Montreal Bold", "PP Neue Montreal Book", sans-serif;
                 --font: "PP Neue Montreal Book", sans-serif;
             }
 
@@ -54,39 +55,35 @@
                 color: var(--foreground);
                 overflow: hidden;
                 transform-origin: 50% 50%;
-                will-change: transform;
+                /*will-change: transform;*/
             }
 
             .orb {
-                position: relative;
-                flex-shrink: 0;
-            }
-
-            .sphere-shell {
-                position: absolute;
-                inset: 0;
-                transform-origin: center;
-                animation: shell-breathe 12s ease-in-out infinite;
-            }
-
-            .orb-stage {
-                position: absolute;
+                position: fixed;
                 top: 50%;
                 left: 50%;
                 width: var(--size);
                 height: var(--size);
                 transform: translate(-50%, -50%);
                 transform-origin: center;
-                animation: intro-expand cubic-bezier(1,0,.89,.2) 1500ms 1 forwards;
+                border-radius: var(--size);
+                animation:
+                    intro-expand cubic-bezier(1, 0, 0.89, 0.2) 2000ms 1 forwards,
+                    intro-border-radius cubic-bezier(1, 0, 0.89, 0.2) 2000ms 1
+                        forwards;
+                overflow: hidden;
+                border: 1px solid white;
+                background: white;
             }
 
-            .orb-mask {
+            .orb-shell {
                 position: absolute;
                 inset: 0;
+                transform-origin: center;
                 overflow: hidden;
-                border-radius: 50%;
-                background: white;
-                border: 1px solid white;
+                border-radius: var(--size);
+                animation: intro-border-radius cubic-bezier(1, 0, 0.89, 0.2)
+                    2000ms 1 forwards;
             }
 
             .text-box {
@@ -106,6 +103,7 @@
                 overflow: hidden;
                 white-space: nowrap;
                 width: 100%;
+                animation: shell-breathe 26s ease-in-out infinite;
             }
 
             .marquee__item {
@@ -148,13 +146,32 @@
             }
 
             @keyframes intro-expand {
-                from {
+                0% {
                     width: var(--size);
                     height: var(--size);
+                    border-width: 1px;
                 }
-                to {
+                70% {
                     width: 150vw;
                     height: 150vh;
+                    border-width: 0;
+                }
+                100% {
+                    width: 100vw;
+                    height: 100vh;
+                    border-width: 0;
+                }
+            }
+
+            @keyframes intro-border-radius {
+                0% {
+                    border-radius: var(--size);
+                }
+                70% {
+                    border-radius: 75vmax;
+                }
+                100% {
+                    border-radius: 0;
                 }
             }
 
@@ -198,59 +215,47 @@
 
             /* I'll pay for the fonts I promise */
             @font-face {
-                font-family: 'PP Neue Montreal Book';
+                font-family: "PP Neue Montreal Book";
                 font-style: normal;
                 font-weight: normal;
-                src: local('PP Neue Montreal Book'), url('fonts/ppneuemontreal-book.woff') format('woff');
+                src:
+                    local("PP Neue Montreal Book"),
+                    url("fonts/ppneuemontreal-book.woff") format("woff");
             }
 
             @font-face {
-                font-family: 'PP Neue Montreal Bold';
+                font-family: "PP Neue Montreal Bold";
                 font-style: normal;
                 font-weight: normal;
-                src: local('PP Neue Montreal Bold'), url('fonts/ppneuemontreal-bold.woff') format('woff');
+                src:
+                    local("PP Neue Montreal Bold"),
+                    url("fonts/ppneuemontreal-bold.woff") format("woff");
             }
         </style>
     </head>
     <body>
-            <div class="orb">
-                <div class="sphere-shell">
-                    <div class="orb-stage">
-                        <div class="orb-mask">
-                            <div class="text-box">
-                                <div class="marquee">
-                                    <div class="marquee__item">
-                                        amaranth studio&nbsp;
-                                    </div>
-                                    <div class="marquee__item">
-                                        amaranth studio&nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-box">
-                                <div class="marquee">
-                                    <div class="marquee__item">
-                                        amaranth studio&nbsp;
-                                    </div>
-                                    <div class="marquee__item">
-                                        amaranth studio&nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-box">
-                                <div class="marquee">
-                                    <div class="marquee__item">
-                                        amaranth studio&nbsp;
-                                    </div>
-                                    <div class="marquee__item">
-                                        amaranth studio&nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="orb">
+            <div class="orb-shell">
+                <div class="text-box">
+                    <div class="marquee">
+                        <div class="marquee__item">amaranth studio&nbsp;</div>
+                        <div class="marquee__item">amaranth studio&nbsp;</div>
                     </div>
                 </div>
-        </main>
+                <div class="text-box">
+                    <div class="marquee">
+                        <div class="marquee__item">amaranth studio&nbsp;</div>
+                        <div class="marquee__item">amaranth studio&nbsp;</div>
+                    </div>
+                </div>
+                <div class="text-box">
+                    <div class="marquee">
+                        <div class="marquee__item">amaranth studio&nbsp;</div>
+                        <div class="marquee__item">amaranth studio&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <p class="subtext">
             eindhoven-based creative engineering, workshop and dance school.
         </p>
